@@ -5,36 +5,36 @@
  */
 package RestuarantBase;
 
-import edu.blackburn.cs.cs212.restaurantbase.MenuItem;
 import edu.blackburn.cs.cs212.restaurantbase.Money;
+import edu.blackburn.cs.cs212.restaurantbase.Orderable;
 
 /**
  *
- * @author mikel.adams
+ * @author adams
  */
-public class Coffee extends MenuItem {
+public class Syrup implements Orderable {
 
-    Size size;
+    String flavor;
+    Money price;
 
     /**
      *
-     * @param name - name of coffee
-     * @param size - size of coffee
-     * @param basePrice - price of coffee
+     * @param flavor - flavor of syrup
+     * @param price - price of syrup
      */
-    public Coffee(String name, Size size, Money basePrice) {
-        super(name, basePrice);
-        this.size = size;
+    public Syrup(String flavor, Money price) {
+        this.flavor = flavor;
+        this.price = price;
     }
 
     /**
-     * Provides String similar to what is on receipt, size name and price
+     * Gives the flavor of syrup
      *
      * @return
      */
     @Override
     public String toString() {
-        return this.size + " " + this.getName() + " " + this.getPrice();
+        return this.flavor;
     }
 
     /**
@@ -44,7 +44,7 @@ public class Coffee extends MenuItem {
      */
     @Override
     public Money getPrice() {
-        return super.getBasePrice();
+        return price;
     }
 
     /**
@@ -54,7 +54,7 @@ public class Coffee extends MenuItem {
      */
     @Override
     public String getReceiptItem() {
-        return this.size + "\t" + this.getName() + "\t" + this.getPrice() + "\n";
+        return this.flavor + "\t " + this.price;
     }
 
 }

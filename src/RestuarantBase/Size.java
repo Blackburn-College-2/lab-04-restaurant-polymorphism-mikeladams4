@@ -11,20 +11,35 @@ import edu.blackburn.cs.cs212.restaurantbase.Measurement;
  *
  * @author mikel.adams
  */
-public class Size extends Measurement{
-    
+public class Size extends Measurement {
+
     String name;
-    
-    public Size(String name){
+
+    /**
+     *
+     * @param name - name of the size
+     */
+    public Size(String name) {
         this.name = name;
     }
-    
-    public String getName(){
+
+    /**
+     * Returns the name of the size
+     *
+     * @return
+     */
+    public String getName() {
         return this.name;
     }
+
+    /**
+     * Returns the name of the size
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return this.name + "";
     }
-    
+
 }

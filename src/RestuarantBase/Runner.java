@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package RestuarantBase;
 
 import edu.blackburn.cs.cs212.restaurantbase.Measurement;
@@ -11,25 +6,35 @@ import edu.blackburn.cs.cs212.restaurantbase.Receipt;
 
 /**
  *
- * @author paul.kline
+ * @author adams
  */
 public class Runner {
 
     /**
-     * @param args the command line arguments
+     *
+     * @param args
      */
     public static void main(String[] args) {
-        Size large = new Size("Large");
+        Money moneyLarge = new Money(4.99);           //Standard pricing instead of making a new money with every drink ordered
+        Money moneyMedium = new Money(3.99);
+        Money moneySmall = new Money(1.99);
+        Money topping = new Money(.75);
+        Money condiment = new Money(.25);
+        Money syrup = new Money(.85);
+
+        Size large = new Size("Large");               //Standard sizes
         Size medium = new Size("Medium");
         Size small = new Size("Small");
-        Money moneyLarge = new Money(12.99);
-        Money moneyMedium = new Money(8.99);
-        Money moneySmall = new Money(6.99);
+
+        Syrup chocolate = new Syrup("Chocolate", syrup);
+        Syrup sugar = new Syrup("Sugar", syrup);
+        Syrup caramel = new Syrup("Caramel", syrup);
+
         Receipt mike = new Receipt();
         Coffee latte = new Coffee("Latte", large, moneyLarge);
         Coffee mocha = new Coffee("Mocha", small, moneySmall);
-        Coffee black = new Coffee("Black Coffe", large, moneyLarge);
-        Coffee irish = new Coffee("Irish Coffe", medium, moneyMedium);
+        Coffee black = new Coffee("Black Coffee", large, moneyLarge);
+        Coffee irish = new Coffee("Irish Coffee", medium, moneyMedium);
         Coffee flat = new Coffee("Flat", large, moneyLarge);
         mike.add(latte);
         mike.add(mocha);
@@ -37,9 +42,24 @@ public class Runner {
         mike.add(irish);
         mike.add(flat);
         System.out.println(mike.prepare());
-        
-        
-        
+        System.out.println(mike.getTotalString());
+
+        FancyCoffee fLatte = new FancyCoffee("Latte", large, moneyLarge);
+        fLatte.add(chocolate);
+        fLatte.add(caramel);
+        fLatte.add(sugar);
+        mike.add(fLatte);
+        System.out.println(mike.prepare());
+        System.out.println(mike.getTotalString());
+
+        Sandwich sandwich = new Sandwich(new Money(0));
+        sandwich.add(new Meat("Chicken", new Money(3.50)));
+        sandwich.add(new Topping("Lettuce", topping));
+        sandwich.add(new Topping("Cheese", topping));
+        sandwich.add(new Topping("Pickles", topping));
+        sandwich.add(new Topping("Mayo", condiment));
+        mike.add(sandwich);
+        System.out.println(mike.prepare());
+        System.out.println(mike.getTotalString());
     }
-    
 }
